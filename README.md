@@ -1,2 +1,2 @@
 # OpenSourceRIS
-Open Source Reconfigurable Intellgient Surface (RIS) for the frequency range of WiFi at 5 GHz
+Open Source Reconfigurable Intellegent Surface (RIS) for the frequency range of WiFi at 5 GHz
