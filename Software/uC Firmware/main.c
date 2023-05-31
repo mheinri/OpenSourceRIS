@@ -6,6 +6,8 @@
  * 		Software, it is provided AS-IS by STMicroelectronics.
  *
  * User code:
+ * 		MIT License
+ *
  * 		Copyright (c) 2023 Markus Heinrichs
  *
  *		Permission is hereby granted, free of charge, to any person obtaining a copy
