@@ -1,10 +1,3 @@
-/*
- * fifo.h
- *
- *  Created on: May 30, 2023
- *      Author: Heinrichs
- */
-
 #ifndef INC_FIFO_H_
 #define INC_FIFO_H_
 

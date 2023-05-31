@@ -1,10 +1,3 @@
-/*
- * fifo.c
- *
- *  Created on: May 30, 2023
- *      Author: Heinrichs
- */
-
 #include "fifo.h"
 
 fifo8 *newFifo8() {
