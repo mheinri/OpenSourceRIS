@@ -352,7 +352,7 @@ int main(void)
 								columnData[i] |= ((data[dataArrayIndex]
 										& (1 << dataBitIndex)) >> dataBitIndex);
 
-								if (k < 11) {
+								if (k < ROW_COUNT-1) {
 									columnData[i] = columnData[i] << 1;
 								}
 
@@ -673,7 +673,7 @@ int main(void)
 								columnData[i] |= ((data[dataArrayIndex]
 										& (1 << dataBitIndex)) >> dataBitIndex);
 
-								if (k < 11) {
+								if (k < ROW_COUNT-1) {
 									columnData[i] = columnData[i] << 1;
 								}
 
@@ -1299,7 +1299,7 @@ void shiftData256(void) {
 		if (columnData[11] & (1 << bitIndex)) {
 			HAL_GPIO_WritePin(S8DATA12_GPIO_Port, S8DATA12_Pin, GPIO_PIN_SET);
 		} else {
-			HAL_GPIO_WritePin(S8DATA2_GPIO_Port, S8DATA12_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(S8DATA12_GPIO_Port, S8DATA12_Pin, GPIO_PIN_RESET);
 		}
 		if (columnData[12] & (1 << bitIndex)) {
 			HAL_GPIO_WritePin(S8DATA13_GPIO_Port, S8DATA13_Pin, GPIO_PIN_SET);
