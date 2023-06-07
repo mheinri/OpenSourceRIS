@@ -325,11 +325,11 @@ int main(void)
 						} else {
 							error = 1;
 #ifdef DEBUG_META
-	  							// Send debug message via UART
-	  							char string[] = "ERROR in main (USB):\n\tInvalid hex character in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  							transmitUart_USB(string);
-	  							transmitUart_BT(string);
-	  #endif
+	  						// Send debug message via UART
+	  						char string[] = "ERROR in main (USB):\n\tInvalid hex character in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  						transmitUart_USB(string);
+	  						transmitUart_BT(string);
+#endif
 						}
 					}
 
@@ -379,11 +379,11 @@ int main(void)
 						char stringOK[] = "#OK\n\0";
 						transmitUart_USB(stringOK);
 #ifdef DEBUG_META
-	  						// Send debug message via UART
-	  						char string[] = "Data shifted, output latched, flags are cleared\n\0";
-	  						transmitUart_USB(string);
-	  						transmitUart_BT(string);
-	  #endif
+	  					// Send debug message via UART
+	  					char string[] = "Data shifted, output latched, flags are cleared\n\0";
+	  					transmitUart_USB(string);
+	  					transmitUart_BT(string);
+#endif
 						// Reset flag for command-is-complete indication
 						commandCompleteFlag_USB = 0;
 						// Reset flag for command-has-started indication
@@ -394,11 +394,11 @@ int main(void)
 						// Reset flags and empty FIFO
 						resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  						// Send debug message via UART
-	  						char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  						transmitUart_USB(string);
-	  						transmitUart_BT(string);
-	  #endif
+	  					// Send debug message via UART
+	  					char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  					transmitUart_USB(string);
+	  					transmitUart_BT(string);
+#endif
 					}
 				}
 				// If first two characters are incorrect (do not match '0x')
@@ -406,11 +406,11 @@ int main(void)
 					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+	  				// Send debug message via UART
+	  				char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  				transmitUart_USB(string);
+	  				transmitUart_BT(string);
+#endif
 				}
 
 			}
@@ -451,32 +451,32 @@ int main(void)
 							char string[] = "#OK\n\0";
 							transmitUart_USB(string);
 #ifdef DEBUG_META
-	  							// Send debug message via UART
-	  							char string2[] = "Static pass key set successfully\n\0";
-	  							transmitUart_USB(string2);
-	  							transmitUart_BT(string2);
-	  #endif
+	  						// Send debug message via UART
+	  						char string2[] = "Static pass key set successfully\n\0";
+	  						transmitUart_USB(string2);
+	  						transmitUart_BT(string2);
+#endif
 						} else {
 							// Send "#ERROR" message via UART
 							char string[] = "#ERROR\n\0";
 							transmitUart_USB(string);
 #ifdef DEBUG_META
-	  							// Send debug message via UART
-	  							char string2[] =
-	  									"Static pass key not set due to error\n\tReturn code: 0x__\n\0";
-	  							if ((result & 0xf0) >> 4 > 9) {
-	  								string2[53] = ((result & 0xf0) >> 4) - 10 + 'a';
-	  							} else {
-	  								string2[53] = ((result & 0xf0) >> 4) + '0';
-	  							}
-	  							if ((result & 0x0f) > 9){
-	  								string2[54] = (result & 0x0f) - 10 + 'a';
-	  							}else{
-	  								string2[54] = (result & 0x0f) + '0';
-	  							}
-	  							transmitUart_USB(string2);
-	  							transmitUart_BT(string2);
-	  #endif
+	  						// Send debug message via UART
+	  						char string2[] =
+	  								"Static pass key not set due to error\n\tReturn code: 0x__\n\0";
+	  						if ((result & 0xf0) >> 4 > 9) {
+	  							string2[53] = ((result & 0xf0) >> 4) - 10 + 'a';
+	  						} else {
+	  							string2[53] = ((result & 0xf0) >> 4) + '0';
+	  						}
+	  						if ((result & 0x0f) > 9){
+	  							string2[54] = (result & 0x0f) - 10 + 'a';
+	  						}else{
+	  							string2[54] = (result & 0x0f) + '0';
+	  						}
+	  						transmitUart_USB(string2);
+	  						transmitUart_BT(string2);
+#endif
 						}
 
 						// Reset flag for command-is-complete indication
@@ -488,23 +488,23 @@ int main(void)
 						// Reset flags and empty FIFO
 						resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  						// Send debug message via UART
-	  						char string[] =
-	  								"ERROR in main (USB):\n\tInvalid static pass key - only numbers are allowed\n\tFIFO is now empty, flags are cleared\n\0";
-	  						transmitUart_USB(string);
-	  						transmitUart_BT(string);
-	  #endif
+	  					// Send debug message via UART
+	  					char string[] =
+	  							"ERROR in main (USB):\n\tInvalid static pass key - only numbers are allowed\n\tFIFO is now empty, flags are cleared\n\0";
+	  					transmitUart_USB(string);
+	  					transmitUart_BT(string);
+#endif
 					}
 
 				} else {
 					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+	  				// Send debug message via UART
+	  				char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  				transmitUart_USB(string);
+	  				transmitUart_BT(string);
+#endif
 				}
 			}
 			// If number of received characters is incorrect
@@ -512,12 +512,12 @@ int main(void)
 				// Reset flags and empty FIFO
 				resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  				// Send debug message via UART
-	  				char string[] =
-	  						"ERROR in main (USB):\n\tIncomplete command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  				transmitUart_USB(string);
-	  				transmitUart_BT(string);
-	  #endif
+	  			// Send debug message via UART
+	  			char string[] =
+	  					"ERROR in main (USB):\n\tIncomplete command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  			transmitUart_USB(string);
+	  			transmitUart_BT(string);
+#endif
 			}
 		} // END if (commandCompleteFlag)
 		else if (requestCompleteFlag_USB) {
@@ -543,24 +543,24 @@ int main(void)
 					// Reset flag for request-has-started indication
 					requestStartFlag_USB = 0;
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string2[] =
-	  							"Supply voltage sampled, flags are cleared\n\0";
-	  					transmitUart_USB(string2);
-	  					transmitUart_BT(string2);
-	  #endif
+	  				// Send debug message via UART
+	  				char string2[] =
+	  						"Supply voltage sampled, flags are cleared\n\0";
+	  				transmitUart_USB(string2);
+	  				transmitUart_BT(string2);
+#endif
 				}
 				// If request is incorrect
 				else {
 					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"ERROR in main (USB):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+	  				// Send debug message via UART
+	  				char string[] =
+	  						"ERROR in main (USB):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  				transmitUart_USB(string);
+	  				transmitUart_BT(string);
+#endif
 				}
 
 			}
@@ -588,24 +588,24 @@ int main(void)
 					// Reset flag for request-has-started indication
 					requestStartFlag_USB = 0;
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"Current pattern transmitted, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+	  				// Send debug message via UART
+	  				char string[] =
+	  						"Current pattern transmitted, flags are cleared\n\0";
+	  				transmitUart_USB(string);
+	  				transmitUart_BT(string);
+#endif
 				}
 				// If request is incorrect
 				else {
 					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"ERROR in main (USB):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+	  				// Send debug message via UART
+	  				char string[] =
+	  						"ERROR in main (USB):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  				transmitUart_USB(string);
+	  				transmitUart_BT(string);
+#endif
 				}
 			}
 			// If number of received characters is incorrect
@@ -613,12 +613,12 @@ int main(void)
 				// Reset flags and empty FIFO
 				resetCommandsAndFIFO_USB();
 #ifdef DEBUG_META
-	  				// Send debug message via UART
-	  				char string[] =
-	  						"ERROR in main (USB):\n\tInvalid request in FIFO - request is of incorrect length\n\tFIFO is now empty, flags are cleared\n\0";
-	  				transmitUart_USB(string);
-	  				transmitUart_BT(string);
-	  #endif
+	  			// Send debug message via UART
+	  			char string[] =
+	  					"ERROR in main (USB):\n\tInvalid request in FIFO - request is of incorrect length\n\tFIFO is now empty, flags are cleared\n\0";
+	  			transmitUart_USB(string);
+	  			transmitUart_BT(string);
+#endif
 			}
 		} // END if (requestCompleteFlag_USB)
 
@@ -700,12 +700,12 @@ int main(void)
 						char stringOK[] = "#OK\n\0";
 						transmitUart_BT(stringOK);
 #ifdef DEBUG_META
-	  						// Send debug message via UART
-	  						char string[] =
-	  								"Data shifted, output latched, flags are cleared\n\0";
-	  						transmitUart_USB(string);
-	  						transmitUart_BT(string);
-	  #endif
+	  					// Send debug message via UART
+	  					char string[] =
+	  							"Data shifted, output latched, flags are cleared\n\0";
+	  					transmitUart_USB(string);
+	  					transmitUart_BT(string);
+#endif
 						// Reset flag for command-is-complete indication
 						commandCompleteFlag_BT = 0;
 						// Reset flag for command-has-started indication
@@ -716,12 +716,12 @@ int main(void)
 						// Reset flags and empty FIFO
 						resetCommandsAndFIFO_BT();
 #ifdef DEBUG_META
-	  						// Send debug message via UART
-	  						char string[] =
-	  								"ERROR in main (BT):\n\tInvalid command in FIFO - command is too long\n\tFIFO is now empty, flags are cleared\n\0";
-	  						transmitUart_USB(string);
-	  						transmitUart_BT(string);
-	  #endif
+	  					// Send debug message via UART
+	  					char string[] =
+	  							"ERROR in main (BT):\n\tInvalid command in FIFO - command is too long\n\tFIFO is now empty, flags are cleared\n\0";
+	  					transmitUart_USB(string);
+	  					transmitUart_BT(string);
+#endif
 					}
 				}
 				// If first two characters are incorrect (do not match '0x')
@@ -729,12 +729,12 @@ int main(void)
 					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_BT();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"ERROR in main (BT):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+	  				// Send debug message via UART
+	  				char string[] =
+	  						"ERROR in main (BT):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+	  				transmitUart_USB(string);
+	  				transmitUart_BT(string);
+#endif
 				}
 
 			}
@@ -743,12 +743,12 @@ int main(void)
 				// Reset flags and empty FIFO
 				resetCommandsAndFIFO_BT();
 #ifdef DEBUG_META
-	  				// Send debug message via UART
-	  				char string[] =
-	  						"ERROR in main (BT):\n\tIncomplete command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  				transmitUart_USB(string);
-	  				transmitUart_BT(string);
-	  #endif
+  				// Send debug message via UART
+  				char string[] =
+  						"ERROR in main (BT):\n\tIncomplete command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+  				transmitUart_USB(string);
+  				transmitUart_BT(string);
+#endif
 			}
 		} // END if (commandCompleteFlag)
 		else if (requestCompleteFlag_BT) {
@@ -774,24 +774,24 @@ int main(void)
 					// Reset flag for request-has-started indication
 					requestStartFlag_BT = 0;
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string2[] =
-	  							"Supply voltage sampled, flags are cleared\n\0";
-	  					transmitUart_USB(string2);
-	  					transmitUart_BT(string2);
-	  #endif
+  					// Send debug message via UART
+  					char string2[] =
+  							"Supply voltage sampled, flags are cleared\n\0";
+  					transmitUart_USB(string2);
+  					transmitUart_BT(string2);
+#endif
 				}
 				// If request is incorrect
 				else {
 					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_BT();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"ERROR in main (BT):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+  					// Send debug message via UART
+  					char string[] =
+  							"ERROR in main (BT):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+  					transmitUart_USB(string);
+  					transmitUart_BT(string);
+#endif
 				}
 
 			}
@@ -819,23 +819,23 @@ int main(void)
 					// Reset flag for request-has-started indication
 					requestStartFlag_BT = 0;
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"Current pattern transmitted, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+  					// Send debug message via UART
+  					char string[] =
+  							"Current pattern transmitted, flags are cleared\n\0";
+  					transmitUart_USB(string);
+  					transmitUart_BT(string);
+#endif
 				}
 				// If request is incorrect
 				else {					// Reset flags and empty FIFO
 					resetCommandsAndFIFO_BT();
 #ifdef DEBUG_META
-	  					// Send debug message via UART
-	  					char string[] =
-	  							"ERROR in main (BT):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
-	  					transmitUart_USB(string);
-	  					transmitUart_BT(string);
-	  #endif
+  					// Send debug message via UART
+  					char string[] =
+  							"ERROR in main (BT):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+  					transmitUart_USB(string);
+  					transmitUart_BT(string);
+#endif
 				}
 			}
 			// If number of received characters is incorrect
@@ -843,22 +843,15 @@ int main(void)
 				// Reset flags and empty FIFO
 				resetCommandsAndFIFO_BT();
 #ifdef DEBUG_META
-	  				// Send debug message via UART
-	  				char string[] =
-	  						"ERROR in main (BT):\n\tInvalid request in FIFO - request is of incorrect length\n\tFIFO is now empty, flags are cleared\n\0";
-	  				transmitUart_USB(string);
-	  				transmitUart_BT(string);
-	  #endif
+  				// Send debug message via UART
+  				char string[] =
+  						"ERROR in main (BT):\n\tInvalid request in FIFO - request is of incorrect length\n\tFIFO is now empty, flags are cleared\n\0";
+  				transmitUart_USB(string);
+  				transmitUart_BT(string);
+#endif
 			}
 		} // END if (requestCompleteFlag_USB)
 
-//		while (uartRxFifo_BT->length > 0) {
-//			// Dequeue the first two characters
-//			volatile uint8_t aChar = dequeueFifo8Data(uartRxFifo_BT);
-//			char stringBT[] = "BT: _\n\0";
-//			stringBT[4] = aChar;
-//			transmitUart_USB(stringBT);
-//		}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -1414,11 +1407,6 @@ static inline uint8_t transmitSupplyVoltage(UART_HandleTypeDef *huart, float vol
 		char resultString[] = "ERROR in transmitSupplyVoltage:\n\tInvalid supply voltage\n\tVoltage variable is either negative or greater than 99.99 V\n\0";
 		transmitUart_USB(resultString);
 		transmitUart_BT(resultString);
-//		if (huart == &huart1) {
-//			transmitUart_USB(resultString);
-//		} else {
-//			transmitUart_BT(resultString);
-//		}
 #endif
 	} else {
 		char resultString[] = "#00.00 V\n\0";
@@ -1791,51 +1779,41 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 				// Send debug message containing flag status
 				char string[] = "ERROR in UART-RX-Callback (USB):\n\0";
 				transmitUart_USB(string);
-//				transmitUart_BT(string);
 
 				char stringC[] = "Char: _\n\0";
 				stringC[6] = rxChar_USB;
 				transmitUart_USB(stringC);
-//				transmitUart_BT(stringC);
 
 				if (commandCompleteFlag_USB) {
 					char string2[] = "\tcommandCompleteFlag_USB = 1\n\0";
 					transmitUart_USB(string2);
-//					transmitUart_BT(string2);
 				} else {
 					char string2[] = "\tcommandCompleteFlag_USB = 0\n\0";
 					transmitUart_USB(string2);
-//					transmitUart_BT(string2);
 				}
 
 				if (commandStartFlag_USB) {
 					char string3[] = "\tcommandStartFlag_USB = 1\n\0";
 					transmitUart_USB(string3);
-//					transmitUart_BT(string3);
 				} else {
 					char string3[] = "\tcommandStartFlag_USB = 0\n\0";
 					transmitUart_USB(string3);
-//					transmitUart_BT(string3);
 				}
 
 				if (requestCompleteFlag_USB) {
 					char string4[] = "\trequestCompleteFlag_USB = 1\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				} else {
 					char string4[] = "\trequestCompleteFlag_USB = 0\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				}
 
 				if (requestStartFlag_USB) {
 					char string4[] = "\trequestStartFlag_USB = 1\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				} else {
 					char string4[] = "\trequestStartFlag_USB = 0\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				}
 #endif
 
@@ -1851,7 +1829,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			char string[] =
 					"ERROR in UART-RX-Callback (USB): FIFO overflow\n\tFIFO is now empty, flags are cleared\n\0";
 			transmitUart_USB(string);
-//			transmitUart_BT(string);
 #endif
 		}
 
@@ -1912,61 +1889,47 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 				// Enqueue received character into FIFO
 				enqueueFifo8Data(uartRxFifo_BT, rxChar_BT);
 			}
-//			// Ignore 0x00
-//			else if(rxChar_BT == 0x00){
-//
-//			}
 			// If an invalid character has been received
 			else {
 #ifdef DEBUG_META
 				// Send debug message containing flag status
 				char string[] = "ERROR in UART-RX-Callback (BT):\n\0";
 				transmitUart_USB(string);
-//				transmitUart_BT(string);
 
 				char stringC[] = "Char: _\n\0";
 				stringC[6] = rxChar_BT;
 				transmitUart_USB(stringC);
-//				transmitUart_BT(stringC);
 
 				if (commandCompleteFlag_BT) {
 					char string2[] = "\tcommandCompleteFlag_BT = 1\n\0";
 					transmitUart_USB(string2);
-//					transmitUart_BT(string2);
 				} else {
 					char string2[] = "\tcommandCompleteFlag_BT = 0\n\0";
 					transmitUart_USB(string2);
-//					transmitUart_BT(string2);
 				}
 
 				if (commandStartFlag_BT) {
 					char string3[] = "\tcommandStartFlag_BT = 1\n\0";
 					transmitUart_USB(string3);
-//					transmitUart_BT(string3);
 				} else {
 					char string3[] = "\tcommandStartFlag_BT = 0\n\0";
 					transmitUart_USB(string3);
-//					transmitUart_BT(string3);
 				}
 
 				if (requestCompleteFlag_BT) {
 					char string4[] = "\trequestCompleteFlag_BT = 1\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				} else {
 					char string4[] = "\trequestCompleteFlag_BT = 0\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				}
 
 				if (requestStartFlag_BT) {
 					char string4[] = "\trequestStartFlag_BT = 1\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				} else {
 					char string4[] = "\trequestStartFlag_BT = 0\n\0";
 					transmitUart_USB(string4);
-//					transmitUart_BT(string4);
 				}
 #endif
 
@@ -1982,7 +1945,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			char string[] =
 					"ERROR in UART-RX-Callback (BT): FIFO overflow\n\tFIFO is now empty, flags are cleared\n\0";
 			transmitUart_USB(string);
-//			transmitUart_BT(string);
 #endif
 		}
 
