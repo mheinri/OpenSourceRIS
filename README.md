@@ -32,14 +32,14 @@ The surface reflection coefficient of the RIS is measured with a vector network 
 
 Fig. 5 shows the magnitude of the measured reflection coefficient. In the WiFi frequency bands from 5.15 - 5.875 GHz, the worst case surface reflection coefficient is −5.2 dB at 5.56 GHz for the OFF state and −4.8 dB at 5.15 GHz for the ON state.
 <p align="center">
-  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/f869c1fb-a102-4f43-b495-82bf06ad6e1b" alt="Simplified unit cell" width="40%" />
+  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/f869c1fb-a102-4f43-b495-82bf06ad6e1b" alt="Simplified unit cell" width="60%" />
   <br />
   Fig. 5: Magnitude response
 </p>
 
 Fig. 6 shows the measured phase response as well as the phase difference between the all ON and all OFF states. The phase difference is wrapped to values between 0° and 180° and reaches its maximum at 5.53 GHz. It is worse at 5.875 GHz with a value of 92°.
 <p align="center">
-  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/01f5b045-c227-4d03-847d-c502eb1adf48" alt="Simplified unit cell" width="40%" />
+  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/01f5b045-c227-4d03-847d-c502eb1adf48" alt="Simplified unit cell" width="60%" />
   <br />
   Fig. 6: Phase response and phase difference
 </p>
