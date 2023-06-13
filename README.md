@@ -22,8 +22,8 @@ The RIS unit cell consists of a linearly polarized pin-fed patch antenna, realiz
   Fig. 3: Simplified unit cell
 </p>
 
-## Measured Surface Reflection Coefficient
-The surface reflection coefficient of the RIS is measured with a vector network analyzer. During the measurement, the RIS is located in the aperture of a large horn antenna, which is specially designed for surface reflection coefficient measurements. Thus, the propagation vectors of the incident and reflected waves are perpendicular to the surface (normal incidence and reflection). Measuremetns are done for the two states where all elements are turned OFF or ON. A metal plate in size of the RIS is used for normalization of the measuement.
+## Surface Reflection Coefficient
+The surface reflection coefficient of the RIS is measured with a vector network analyzer. During the measurement, the RIS is located in the aperture of a large horn antenna, which is specially designed for surface reflection coefficient measurements. Thus, the propagation vectors of the incident and reflected waves are perpendicular to the surface (normal incidence and reflection). Measuremetns are done for the two states where all elements are turned OFF or ON. A metal plate in size of the RIS is used for normalization of the measuements.
 <p align="center">
   <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/ed71ec81-0a76-41ab-a6e4-504c02d85109" alt="Simplified unit cell" width="40%" />
   <br />
@@ -57,5 +57,5 @@ The following information will be added soon:
 * M. Heinrichs, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023
 * M. Heinrichs, F. Pirlet, and R. Kronberger, "Measurement System and Methodology for RIS Evaluation", handed in for ISAP 2023
 
-## Akcnowledgment
+## Acknowledgment
 This work was funded by the German Federal Ministry of Education and Research (BMBF) in the framework of Project MetaSec (Förderkennzeichen 16KIS1236).
