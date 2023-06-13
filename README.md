@@ -14,7 +14,7 @@ An open source linearly polarized Reconfigurable Intelligent Surface (RIS) with 
 </p>
 
 ## Unit Cell Design
-The RIS unit cell consists of a linearly polarized pin-fed patch antenna, realized on a printed circuit board (PCB) with three copper layers. Low-cost FR4 substrate with a specified dielectric constant of ϵr = 4.6 and dissipation factor tan δ = 0.028 is used. Fig. 3 shows a cross sectional view of the unit cell and its dimensions. The circuit network generates a binary switchable reflection coefficient and is located on the back side of the RIS. The BGS12P2L6 single pole, double throw (SPDT) RF switch from Infineon Technologies switches the antenna port to either an open or short circuit, generating a phase shift in the reflection coefficient of 180°.
+The RIS unit cell consists of a linearly polarized pin-fed patch antenna, realized on a printed circuit board (PCB). Low-cost FR4 substrate with a specified dielectric constant of ϵr = 4.6 and dissipation factor tan δ = 0.028 is used. Fig. 3 shows the simplified unit cell with its dimensions. The circuit network generates a binary switchable reflection coefficient by using a BGS12P2L6 single pole, double throw (SPDT) RF switch from Infineon Technologies.
 
 <p align="center">
   <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/89da5c8c-9dff-4ede-b9c3-447b4d54111c" alt="Simplified unit cell" width="40%" />
