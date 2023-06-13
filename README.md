@@ -58,3 +58,6 @@ The following information will be added soon:
 ## Publications
 * M. Heinrichs, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023
 * M. Heinrichs, F. Pirlet, and R. Kronberger, "Measurement System and Methodology for RIS Evaluation", handed in for ISAP 2023
+
+## Akcnowledgment
+This work was funded by the German Federal Ministry of Education and Research (BMBF) in the framework of Project MetaSec (Förderkennzeichen 16KIS1236).
