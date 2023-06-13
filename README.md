@@ -45,13 +45,13 @@ Fig. 6 shows the measured phase response as well as the phase difference between
 </p>
 
 ## Control Interfaces
-A control board is attached to the back side of the RIS. With this, the RIS can be connected to a PC and controlled via a USB connection. Alternatively, it can be operated wirelessly with a battery and controlled via Bluetooth Low Energy.
+A controller board is attached to the back side of the RIS. With this, the RIS can be connected to a PC and controlled via a USB connection. Alternatively, it can be operated wirelessly with a battery and controlled via Bluetooth Low Energy.
 
 ## To be added
 The following information will be added soon:
 * Information on control syntax
 * Schematic of the RF PCB
-* Manufacturing information
+* Additional manufacturing information
 
 ## Publications
 * M. Heinrichs, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023
