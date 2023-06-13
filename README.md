@@ -45,9 +45,7 @@ Fig. 6 shows the measured phase response as well as the phase difference between
 </p>
 
 ## Control Interfaces
-A controller PCB is attached to the backside of the RIS. Thereby, it can be connected to a PC and controlled via a USB connection. Alternatively, it can be operated wirelessly with a battery and controlled via Bluetooth Low Energy (fully wireless operation is possible).
-
-To be added soon.
+A control board is attached to the back side of the RIS. With this, the RIS can be connected to a PC and controlled via a USB connection. Alternatively, it can be operated wirelessly with a battery and controlled via Bluetooth Low Energy.
 
 ## To be added
 The following information will be added soon:
