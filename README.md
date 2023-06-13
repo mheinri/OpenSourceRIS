@@ -8,7 +8,7 @@ An open source linearly polarized Reconfigurable Intelligent Surface (RIS) with 
 </p>
 
 <p align="center">
-  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/879b14ec-e073-4064-8092-d0f0a39c2f05" alt="Simplified unit cell" width="60%" />
+  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/9f8471eb-37ff-4aab-8705-f73981e557fd" alt="Simplified unit cell" width="60%" />
   <br />
   Fig. 2: Back side of the RIS with controller board attached
 </p>
