@@ -58,4 +58,5 @@ The following information will be added soon:
 * M. Heinrichs, F. Pirlet, and R. Kronberger, "Measurement System and Methodology for RIS Evaluation", handed in for ISAP 2023
 
 ## Acknowledgment
+Many thanks to the Institute of Electronic Circuits at Ruhr University Bochum for the extensive help with assembling the printed circuit boards.
 This work was funded by the German Federal Ministry of Education and Research (BMBF) in the framework of Project MetaSec (Förderkennzeichen 16KIS1236).
