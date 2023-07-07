@@ -54,7 +54,7 @@ The following information will be added soon:
 * Additional manufacturing information
 
 ## Publications
-* M. Heinrichs, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023
+* M. Heinrichs, A. Sezgin, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023
 * M. Heinrichs, F. Pirlet, and R. Kronberger, "Measurement System and Methodology for RIS Evaluation", handed in for ISAP 2023
 
 ## Acknowledgment
