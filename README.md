@@ -1,5 +1,5 @@
 # Open Source RIS
-An open source linearly polarized Reconfigurable Intelligent Surface (RIS) with 1-bit phase control for the frequency range of 5 GHz WiFi (5.15 - 5.875 GHz)
+An open source linearly polarized Reconfigurable Intelligent Surface (RIS) with 1-bit phase control for the frequency range of 5 GHz WiFi (5.15 - 5.875 GHz).
 
 <p align="center">
   <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/56814852-78b3-49b1-a10c-a79a4851f878" alt="Open source RIS" width="60%" />
