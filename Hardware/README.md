@@ -3,7 +3,7 @@ Open Source RIS is designed for the JLC04161H-7628 impedance-controlled PCB stac
 
 Recommended PCB stackup is as follows:
 
-|Copper-Layer|Material|Thickness|Layer usage (RF PCB)|Layer Usage (Controller PCB)|
+|Copper-Layer|Material|Thickness|Layer Usage (RF PCB)|Layer Usage (Controller PCB)|
 |-|-|-|-|-|
 |1|Copper + gold plating|0.035 mm|Signals and components|Signals and components|
 | |FR4 (7628 material)|0.210 mm| | |
@@ -20,4 +20,4 @@ Dielectric constant of prepreg material and core material must be equal:
 # Known Issue
 It has been observed that in some cases the board-to-board connections do not work. Due to its large size, the RF PCB is not absolutely planar. By mounting the RIS, e.g. on an aluminum frame, the RF PCB bends. This affects the pin header connection, causing it to fail in some cases.
 
-We have therefore soldered the controller PCB directly to the RF PCB by omitting the female pin heads. The distance between RF PCB and controller PCB should remain at least 3 mm to avoid undesirable effects on the unit cells below.
+We have therefore soldered the controller PCB directly to the RF PCB by omitting the female pin heads. The distance between RF PCB and controller PCB should remain at least 3 mm to avoid undesirable effects on the RIS elements below.
