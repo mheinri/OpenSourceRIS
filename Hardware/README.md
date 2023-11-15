@@ -17,6 +17,8 @@ Dielectric constant of prepreg material and core material must be equal:
 * Dielectric constant (according to manufacturer): 4.6
 * Dielectric constant (measured and used for simulation): 4.8
 
+PCB assembly was done in-house and not with JLCPCB assembly service. Small changes to the pick and place file format may be required for commercial assembly services.
+
 # Settings for Ordering at JLCPCB
 The following order options have been used when ordering from JLCPCB. Irrelevant options are omitted.
 ## RF PCB
