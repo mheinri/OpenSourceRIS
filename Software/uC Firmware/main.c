@@ -30,12 +30,11 @@
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <dwtDelay.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <dwtDelay.h>
 #include "fifo.h"
 #include "string.h"
 #include "math.h"
@@ -49,7 +48,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+//#define DEBUG_META
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -64,9 +63,6 @@
 // Number of bytes per setPattern command (rowCount*columnCount/8 rounded up to the next integer if required)
 #define DATA_BYTE_COUNT 32
 
-// Static pass key of BT module
-#define STATIC_PASS_KEY_BT 524953
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -79,10 +75,14 @@ UART_HandleTypeDef huart2;
 // Variable for calibration data of internal reference voltage
 uint16_t vrefint_cal = 0;
 
+// Serial number string, length has to be 3 characters!!!
+char serialNumber[13] = "#SerNo:   0\n\0";
+
 // Initialization strings send via UART on startup
+// Set serial number above!
 char initString0[] = "\nOpen Source RIS\n\0";
-char initString1[] = "Firmware version: 1.0\n\0";
-char initString2[] = "Serial no.: 0\n\0";
+char initString1[] = "Firmware version: 1.1\n\0";
+char initString2[] = "Serial no.: 000\n\0";
 char initString3[] = "Row count: 16\n\0";
 char initString4[] = "Column count: 16\n\0";
 char initString5[] = "\n#READY!\n\0";
@@ -262,6 +262,9 @@ int main(void)
 	enableLED_YE();
 
 	// Transmit initialization strings via UART
+	initString2[12] = serialNumber[8];
+	initString2[13] = serialNumber[9];
+	initString2[14] = serialNumber[10];
 	transmitUart_USB(initString0);
 	transmitUart_USB(initString1);
 	transmitUart_USB(initString2);
@@ -507,6 +510,39 @@ int main(void)
 #endif
 				}
 			}
+			// If the number of received characters is correct ("Reset"+NL)
+			else if (uartRxFifo_USB->length == 6) {
+				// Dequeue the complete command
+				volatile uint8_t command[6] = { 0 };
+				for (uint8_t i = 0; i < 6; i++) {
+					command[i] = dequeueFifo8Data(uartRxFifo_USB);
+				}
+
+				// If the command header is correct
+				if (command[0] == 'R' && command[1] == 'E' && command[2] == 'S'
+						&& command[3] == 'E' && command[4] == 'T'
+						&& command[5] == '\n') {
+
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string2[] = "Resetting device.\n\0";
+					transmitUart_USB(string2);
+					transmitUart_BT(string2);
+					HAL_Delay(100);
+#endif
+					NVIC_SystemReset();
+
+				} else {
+					// Reset flags and empty FIFO
+					resetCommandsAndFIFO_USB();
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string[] = "ERROR in main (USB):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+					transmitUart_USB(string);
+					transmitUart_BT(string);
+#endif
+				}
+			}
 			// If number of received characters is incorrect
 			else {
 				// Reset flags and empty FIFO
@@ -523,7 +559,7 @@ int main(void)
 		else if (requestCompleteFlag_USB) {
 			// If the number of received characters is correct (5 for "Vext"+NL)
 			if (uartRxFifo_USB->length == 5) {
-				// Dequeue the first two characters
+				// Dequeue the five characters
 				volatile uint8_t char1 = dequeueFifo8Data(uartRxFifo_USB);
 				volatile uint8_t char2 = dequeueFifo8Data(uartRxFifo_USB);
 				volatile uint8_t char3 = dequeueFifo8Data(uartRxFifo_USB);
@@ -566,7 +602,7 @@ int main(void)
 			}
 			// If the number of received characters is correct (8 for "Pattern"+NL)
 			else if (uartRxFifo_USB->length == 8) {
-				// Dequeue the first two characters
+				// Dequeue the eight characters
 				volatile uint8_t char1 = dequeueFifo8Data(uartRxFifo_USB);
 				volatile uint8_t char2 = dequeueFifo8Data(uartRxFifo_USB);
 				volatile uint8_t char3 = dequeueFifo8Data(uartRxFifo_USB);
@@ -605,6 +641,51 @@ int main(void)
 	  						"ERROR in main (USB):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
 	  				transmitUart_USB(string);
 	  				transmitUart_BT(string);
+#endif
+				}
+			}
+			// If the number of received characters is correct (8 for "SerialNo"+NL)
+			else if (uartRxFifo_USB->length == 9) {
+				// Dequeue the nine characters
+				volatile uint8_t char1 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char2 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char3 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char4 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char5 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char6 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char7 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char8 = dequeueFifo8Data(uartRxFifo_USB);
+				volatile uint8_t char9 = dequeueFifo8Data(uartRxFifo_USB);
+
+				// If request is correct
+				if (char1 == 'S' && char2 == 'E' && char3 == 'R' && char4 == 'I'
+						&& char5 == 'A' && char6 == 'L' && char7 == 'N'
+						&& char8 == 'O' && char9 == '\n') {
+					// Send current pattern configuration via UART
+					transmitUart_USB(serialNumber);
+
+					// Reset flag for request-is-complete indication
+					requestCompleteFlag_USB = 0;
+					// Reset flag for request-has-started indication
+					requestStartFlag_USB = 0;
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string[] =
+							"Serial number transmitted, flags are cleared\n\0";
+					transmitUart_USB(string);
+					transmitUart_BT(string);
+#endif
+				}
+				// If request is incorrect
+				else {
+					// Reset flags and empty FIFO
+					resetCommandsAndFIFO_USB();
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string[] =
+							"ERROR in main (USB):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+					transmitUart_USB(string);
+					transmitUart_BT(string);
 #endif
 				}
 			}
@@ -696,7 +777,7 @@ int main(void)
 						// Latch shift register outputs
 						latchData();
 
-						// Send "#OK" message via UART
+						// Send "#OK" message via BT
 						char stringOK[] = "#OK\n\0";
 						transmitUart_BT(stringOK);
 #ifdef DEBUG_META
@@ -738,6 +819,42 @@ int main(void)
 				}
 
 			}
+			// If the number of received characters is correct ("Reset"+NL)
+			else if (uartRxFifo_BT->length == 6) {
+				// Dequeue the complete command
+				volatile uint8_t command[6] = { 0 };
+				for (uint8_t i = 0; i < 6; i++) {
+					command[i] = dequeueFifo8Data(uartRxFifo_BT);
+				}
+
+				// If the command header is correct
+				if (command[0] == 'R' && command[1] == 'E' && command[2] == 'S'
+						&& command[3] == 'E' && command[4] == 'T'
+						&& command[5] == '\n') {
+					// Send "#OK" message via BT
+					char stringOK[] = "#OK\n\0";
+					transmitUart_BT(stringOK);
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string2[] = "Resetting device.\n\0";
+					transmitUart_USB(string2);
+					transmitUart_BT(string2);
+#endif
+					HAL_Delay(100);
+					NVIC_SystemReset();
+
+				} else {
+					// Reset flags and empty FIFO
+					resetCommandsAndFIFO_BT();
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string[] =
+							"ERROR in main (BT):\n\tInvalid command in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
+					transmitUart_USB(string);
+					transmitUart_BT(string);
+#endif
+				}
+			}
 			// If number of received characters is incorrect
 			else {
 				// Reset flags and empty FIFO
@@ -754,7 +871,7 @@ int main(void)
 		else if (requestCompleteFlag_BT) {
 			// If the number of received characters is correct (5 for "Vext"+NL)
 			if (uartRxFifo_BT->length == 5) {
-				// Dequeue the first two characters
+				// Dequeue the five characters
 				volatile uint8_t char1 = dequeueFifo8Data(uartRxFifo_BT);
 				volatile uint8_t char2 = dequeueFifo8Data(uartRxFifo_BT);
 				volatile uint8_t char3 = dequeueFifo8Data(uartRxFifo_BT);
@@ -797,7 +914,7 @@ int main(void)
 			}
 			// If the number of received characters is correct (8 for "Pattern"+NL)
 			else if (uartRxFifo_BT->length == 8) {
-				// Dequeue the first two characters
+				// Dequeue the eight characters
 				volatile uint8_t char1 = dequeueFifo8Data(uartRxFifo_BT);
 				volatile uint8_t char2 = dequeueFifo8Data(uartRxFifo_BT);
 				volatile uint8_t char3 = dequeueFifo8Data(uartRxFifo_BT);
@@ -835,6 +952,39 @@ int main(void)
   							"ERROR in main (BT):\n\tInvalid request in FIFO\n\tFIFO is now empty, flags are cleared\n\0";
   					transmitUart_USB(string);
   					transmitUart_BT(string);
+#endif
+				}
+			}
+			// If the number of received characters is correct (8 for "SerialNo"+NL)
+			else if (uartRxFifo_BT->length == 9) {
+				// Dequeue the nine characters
+				volatile uint8_t char1 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char2 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char3 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char4 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char5 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char6 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char7 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char8 = dequeueFifo8Data(uartRxFifo_BT);
+				volatile uint8_t char9 = dequeueFifo8Data(uartRxFifo_BT);
+
+				// If request is correct
+				if (char1 == 'S' && char2 == 'E' && char3 == 'R' && char4 == 'I'
+						&& char5 == 'A' && char6 == 'L' && char7 == 'N'
+						&& char8 == 'O' && char9 == '\n') {
+					// Send current pattern configuration via UART
+					transmitUart_BT(serialNumber);
+
+					// Reset flag for request-is-complete indication
+					requestCompleteFlag_BT = 0;
+					// Reset flag for request-has-started indication
+					requestStartFlag_BT = 0;
+#ifdef DEBUG_META
+					// Send debug message via UART
+					char string[] =
+						"Serial number transmitted, flags are cleared\n\0";
+					transmitUart_USB(string);
+					transmitUart_BT(string);
 #endif
 				}
 			}
@@ -1878,8 +2028,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			}
 			// If a hex-value has been received instead and commandStartFleg is set
 			else if (((rxChar_BT >= '0' && rxChar_BT <= '9')
-					|| (rxChar_BT >= 'A' && rxChar_BT <= 'F')
-					|| rxChar_BT == 'X') && commandStartFlag_BT) {
+					|| (rxChar_BT >= 'A' && rxChar_BT <= 'Z'))
+					&& commandStartFlag_BT) {
 				// Enqueue received character into FIFO
 				enqueueFifo8Data(uartRxFifo_BT, rxChar_BT);
 			}
