@@ -51,7 +51,6 @@ A controller board is attached to the back side of the RIS. With this, the RIS c
 The following information will be added soon:
 * Information on control syntax
 * Schematic of the RF PCB
-* Additional manufacturing information
 
 ## Publications
 * [M. Heinrichs, A. Sezgin, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023](https://github.com/mheinri/OpenSourceRIS/blob/main/Open%20Source%20Reconfigurable%20Intelligent%20Surface%20for%20the%20Frequency%20Range%20of%205%20GHz%20WiFi.pdf)
