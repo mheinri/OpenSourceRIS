@@ -47,6 +47,30 @@ classdef RIS_BTLE_Interface
         end
 
         % 
+        % Read serial number
+        % 
+        % Return value: serial number
+        %
+        function serialNumber = readSerialNumber(obj)
+            % Return value, 0 indicates an error
+            serialNumber = 0;
+
+            % Read serial number
+            response = obj.sendCommand('?SerialNo');
+
+            % If readout was successful
+            if ~isempty(response)
+                try
+                    % Convert response to voltage
+                    response = char(response);
+                    serialNumber = str2double(response(end-2:end));
+                catch e
+                    disp(e.getReport());
+                end
+            end
+        end
+
+        % 
         % Read voltage of external power supply
         % 
         % Return value: external supply voltage / V (99.99 in error case)
@@ -69,7 +93,6 @@ classdef RIS_BTLE_Interface
                 end
             end
         end
-
 
         %
         % Read the current pattern in hex format
@@ -118,13 +141,39 @@ classdef RIS_BTLE_Interface
 
         end
 
+        % 
+        % Reset RIS and deinitialize RIS object
+        %
+        function obj = resetAndDeinit(obj)
+            % Reset RIS
+            write(obj.writeCharacteristic, [0x01 '!Reset' 0x0a]);
+            
+            % Clear object properties
+            try
+                obj.bleObject = [];
+                obj.readDescriptor = [];
+                obj.readCharacteristic = [];
+                obj.writeCharacteristic = [];
+            catch e
+                disp(e.getReport());
+            end
+
+        end
+
+        %
+        % Deinitialize RIS object by
+        %   - unsubscribing from characteristics
+        %   - clear object properties
+        %
         function obj = deinit(obj)
+            % Unsibscribe from characteristics
             try
                 unsubscribe(obj.readCharacteristic);
             catch e
                 disp(e.getReport());
             end
 
+            % Clear object properties
             try
                 obj.bleObject = [];
                 obj.readDescriptor = [];
@@ -137,4 +186,3 @@ classdef RIS_BTLE_Interface
 
     end
 end
-
