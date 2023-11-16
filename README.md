@@ -45,11 +45,97 @@ Fig. 6 shows the measured phase response as well as the phase difference between
 </p>
 
 ## Control Interfaces
-A controller board is attached to the back side of the RIS. With this, the RIS can be connected to a PC and controlled via a USB connection. Alternatively, it can be operated wirelessly with a battery and controlled via Bluetooth Low Energy.
+A controller board is attached to the back side of the RIS. With this, the RIS can be connected to a PC and controlled via a USB connection. Alternatively, it can be operated wirelessly with a battery and controlled via Bluetooth Low Energy (BLE). Fig. 7 shows the block diagram of the control unit.
+
+<p align="center">
+  <img src="https://github.com/mheinri/OpenSourceRIS/assets/122888316/b56138ef-4683-4436-9eda-e91e34c1d54c" alt="Block diagram" width="60%" />
+  <br />
+  Fig. 7: Block diagram
+</p>
+
+### USB interface
+When using the USB interface, a virtual COM port (VCP) driver for the FT231XS USB-to-UART converter has to be installed. If the driver is not already installed or does not install automatically, it can be downloaded from the homepage of manufacturer FTDI (currently available at [https://ftdichip.com/drivers/vcp-drivers/](https://ftdichip.com/drivers/vcp-drivers/)). The VCP driver is provided for Windows, Linux and Mac OS.
+
+Settings for the virtual COM port are as follows:
+* 8 data bits
+* 0 parity bits
+* 1 stop bit
+* 115.2 kBd/s
+
+### BLE interface
+A Proteus-III Bluetooth module from Würth Elektronik is used for control via Bluetooth. This is configured as a Bluetooth peripheral and must be coupled with a Bluetooth central, for example a PC with a Bluetooth interface installed. If the RIS is supplied with power, a new Bluetooth device appears in the search list of the PC. The device identifier or Bluetooth name of the RIS has the format A-xxxxxx, where xxxxxx stands for three bytes of the MAC address of the Bluetooth module in hexadecimal format (e.g. A-3163D1). These three bytes can be taken from the label on the Bluetooth module as "ID". The green LED next to the Bluetooth module flashes as long as the module has not been paired and is in advertising mode.
+
+If pairing is started, a Static Pass Key must be entered. That Key hast to be set in advance via the USB interface and the `!BT-Key` command described below. If the pairing was successful, the green LED next to the Bluetooth module lights up permanently.
+
+After pairing, the write and read services of the Bluetooth protocol must be activated in order to exchange data with the Bluetooth module. Once the services have been activated, the red LED next to the Bluetooth module lights up continuously. How exactly the services are activated depends on the software used to control the Bluetooth interface on the PC. Example code for MATLAB is provided under [Software/Control Software/MATLAB Code Examples](/Software/Control%20Software/MATLAB%20Code%20Examples/).
+
+### Command syntax
+All commands are ASCII encoded and are therefore easy to read. Each command starts with an exclamation mark (`!`) or a question mark (`?`) as start character followed by the actual command content. The command is then terminated at the end with a newline character (`␤`). A response from the RIS starts with a number sign (`#`) and is terminated with a newline cahracter as well. It is not necessary to be case sensitive with commands.
+
+The following commands are available:
+* Setting a pattern: `!0x...`
+* Reading the currently configured pattern: `?Pattern`
+* Reading the external supply voltage: `?Vext`
+* Reading the serial number: `?SerialNo`
+* Resetting the RIS: `!Reset`
+* Setting the Static Pass Key for Bluetooth: `!BT-Key`
+
+#### Setting a pattern
+Each RIS element has been assigned a number between 1 and 256. Looking at the front of the surface as in Fig. 1, the first element is located in the top left corner. The other elements are arranged in reading direction with ascending number.
+Examples: The second element is to the right of the first element, the 16th element is in the top right corner, the 17th element is on the far left in the second row from the top, and the 256th element is the one in the bottom right corner.
+Essentially, a 256-bit number is sent to the RIS as a control command. Here, each bit represents the state of a specific RIS element. With a 0, the corresponding element is deactivated and the LED on the back is not lit and with a 1, the element is activated and the LED lights up. The assignment of the bit indices to the unit cells can be taken from the table below.
+
+|Bit-Index|255 (MSB)|254|253|...|2|1|0 (LSB)|
+|---|---|---|---|---|---|---|---|
+|**Element no.**|1|2|3|...|254|255|256|
+
+The control command for setting a pattern is formed on the basis of this 256-bit number. The command starts with an exclamation mark (`!`) as start character, followed by the 256-bit number in hexadecimal format. The hex prefix (`0x`) is specified at the beginning for better readability. The command is then terminated with a newline character (`␤`) at the end.
+
+|Example Command|Set Pattern|
+|---|---|
+|`!0x0000000000000000000000000000000000000000000000000000000000000000␤`|All elements inactive|
+|`!0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF␤`|All elements active|
+|`!0x8000000000000000000000000000000000000000000000000000000000000000␤`|Element 1 active|
+|`!0x0000000000000000000000000000000000000000000000000000000000000001␤`|Element 256 active|
+|`!0xFF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00␤`|Left half of the surface active|
+|`!0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000␤`|Upper half of the surface active|
+
+If the pattern was set successfully, the RIS sends `#OK␤` as confirmation. If no response is sent by the RIS, either an invalid command was used or an error occurred. In this case, the configured pattern of the RIS remains unchanged.
+
+#### Reading the currently configured pattern
+To read out the currently set pattern, the command `?Pattern␤` is used. The RIS then responds with `#0X012...DEF␤`, where `012...DEF` is a hexadecimal 256-bit long number. The structure of this number is the same as for setting a pattern.
+
+|Example Command|Example Response from RIS|
+|---|---|
+|`?Pattern␤`|`#0X00007FFE40025FFA500A57EA542A55AA55AA542A57EA500A5FFA40027FFE0000␤`|
+
+#### Reading the external supply voltage
+In order to read out the external supply voltage that is present at the coaxial power connector, the command `?Vext␤` is used. The RIS then responds with `#00.00 V␤`, where `00.00` is a fixed-point number for the measured voltage in Volts.
+
+|Example Command|Example Response from RIS|
+|---|---|
+|`?Vext␤`|`#09.14 V␤`|
+
+#### Reading the serial number
+tbd
+
+#### Resetting the RIS
+tbd
+
+#### Setting the Static Pass Key for Bluetooth
+The Static Pass Key can only be set via the USB interface. This command cannot be executed via Bluetooth. The Static Pass Key is non-volatile and remains unchanged after powercycling the RIS or resetting it via the `!Reset` command.
+To set the Static Pass Key, the command `!BT-Key=123456␤` is used, where `123456` is exemplary for the new Key. The Static Pass Key has a fixed length of six decimal digits, all of which must be specified. Valid is therefore a number between zero and 999999.
+
+|Example Command|New Static Pass Key|
+|---|---|
+|`!BT-Key=000000␤`|000000|
+|`!BT-Key=123456␤`|123456|
+|`!BT-Key=054860␤`|054860|
+
+If the Static Pass Key was set successfully, the RIS sends `#OK␤` as confirmation. If the RIS sends `#ERROR␤`, either an invalid key was specified or an error occurred. Time between sending the command and receiving the response may take several seconds.
 
 ## To be added
 The following information will be added soon:
-* Information on control syntax
 * Schematic of the RF PCB
 
 ## Publications
