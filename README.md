@@ -117,13 +117,31 @@ In order to read out the external supply voltage that is present at the coaxial 
 |`?Vext␤`|`#09.14 V␤`|
 
 #### Reading the serial number
-tbd
+Reading the serial number of a RIS board is done by sending the `?SerialNo␤` command. The RIS then responds with `#SerNo: 123␤`, where `123` is a fixed length serial number of up to three digits. For serial numbers with less digits, leding spaces are transmitted as well.
+
+|Example Command|Example Response from RIS|
+|---|---|
+|`?SerialNo␤`|`#SerNo:  12␤`|
 
 #### Resetting the RIS
-tbd
+The RIS can be reset by sending the `!Reset` command. The microcontroller then performs a software reset. The RIS is back up as soon as a `#READY␤` is received at the end of the boot information.
+
+An example full response of the RIS after resetting or power cycling is as follows:
+```
+␤
+Open Source RIS␤
+Firmware version: 1.1␤
+Serial no.:  12␤
+Row count: 16␤
+Column count: 16␤
+␤
+#READY!␤
+```
+
+Note that an established Bluetooth connection gets lost during a reset, so that a reinitialization of the BLE connection is required.
 
 #### Setting the Static Pass Key for Bluetooth
-The Static Pass Key can only be set via the USB interface. This command cannot be executed via Bluetooth. The Static Pass Key is non-volatile and remains unchanged after powercycling the RIS or resetting it via the `!Reset` command.
+The Static Pass Key can only be set via the USB interface. This command cannot be executed via Bluetooth. The Static Pass Key is non-volatile and remains unchanged after power cycling the RIS or resetting it via the `!Reset` command.
 To set the Static Pass Key, the command `!BT-Key=123456␤` is used, where `123456` is exemplary for the new Key. The Static Pass Key has a fixed length of six decimal digits, all of which must be specified. Valid is therefore a number between zero and 999999.
 
 |Example Command|New Static Pass Key|
