@@ -97,8 +97,8 @@ The control command for setting a pattern is formed on the basis of this 256-bit
 |`!0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF␤`|All elements active|
 |`!0x8000000000000000000000000000000000000000000000000000000000000000␤`|Element 1 active|
 |`!0x0000000000000000000000000000000000000000000000000000000000000001␤`|Element 256 active|
-|`!0xFF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00␤`|Left half of the surface active|
-|`!0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000␤`|Upper half of the surface active|
+|`!0xFF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00␤`|Left half of the RIS active|
+|`!0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000␤`|Upper half of the RIS active|
 
 If the pattern was set successfully, the RIS sends `#OK␤` as confirmation. If no response is sent by the RIS, either an invalid command was used or an error occurred. In this case, the configured pattern of the RIS remains unchanged.
 
