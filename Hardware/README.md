@@ -29,16 +29,16 @@ The following order options have been used when ordering from JLCPCB. Irrelevant
 * Different Design: 1
 * Delivery Format: Single PCB
 * PCB Thickness: 1.6 mm
-* Impedance Control: yes JLC04161H-7628
+* Impedance Control: Yes JLC04161H-7628
 * Material Type: TG155
 * Via Covering: Tented
-* Surface Finish: ENIG Gold Thickness: 1 U'' (ENIG is preferred over HASL)
+* Surface Finish: ENIG Gold Thickness 1 U'' (ENIG is preferred over HASL)
 * Deburring/Edge routing: No
 * Outer Copper Weight: 1 oz
 * Inner Copper Weight: 0.5 oz
 * Gold Fingers: No
 * Flying Probe Test: Fully Test
-* Castellated Holes: no
+* Castellated Holes: No
 * Remove Order Number: Yes (but is not required)
 * Min via hole size/diameter: 0.2 mm/(0.3/0.35 mm)
 * 4-Wire Kelvin Test: Yes
