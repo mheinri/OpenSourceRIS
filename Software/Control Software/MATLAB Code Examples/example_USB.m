@@ -13,7 +13,7 @@ end
 %% Control examples
 
 % Set pattern
-writeline(ris, '!0XFFC00FFC00FFC00FFC00FFC00FFC00');
+writeline(ris, '!0XFFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000');
 % Get response
 response = readline(ris);
 fprintf("Response from setting a pattern: %s\n", response);
