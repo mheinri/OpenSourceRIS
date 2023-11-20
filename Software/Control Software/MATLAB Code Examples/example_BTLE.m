@@ -20,7 +20,7 @@ fprintf("External supply voltage: %.2f V\n", externalVoltage);
 %% Raw access
 
 % Set pattern
-response = ris.sendCommand('!0XFFC00FFC00FFC00FFC00FFC00FFC00');
+response = ris.sendCommand('!0XFFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000');
 fprintf("Response from setting a pattern: %s\n", response);
 
 % Read pattern
