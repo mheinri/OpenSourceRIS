@@ -45,7 +45,7 @@ Fig. 6 shows the measured phase response as well as the phase difference between
 </p>
 
 ## Power Supply
-Power is supplied either via USB or via an external voltage source, e.g. a power supply unit, a battery or a rechargeable accumulator. The external voltage can be supplied via a coaxial power connector (2.5 x 5.5 mm), where the positive potential is applied to the inner pin of the connector. The recommended voltage range is between 9 V and 24 V DC.
+Power is supplied either via USB or via an external voltage source, e.g. a power supply unit, a battery or a rechargeable accumulator. The external voltage can be supplied via a coaxial power connector (2.1 x 5.5 mm), where the positive potential is applied to the inner pin of the connector. The recommended voltage range is between 9 V and 24 V DC.
 
 The external voltage can be measured and read out, see documentation of the corresponding command below. This can be used, for example, to monitor the charge level of a battery.
 
