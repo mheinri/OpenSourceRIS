@@ -158,8 +158,8 @@ To set the Static Pass Key, the command `!BT-Key=123456␤` is used, where `1234
 If the Static Pass Key was set successfully, the RIS sends `#OK␤` as confirmation. If the RIS sends `#ERROR␤`, either an invalid key was specified or an error occurred. Time between sending the command and receiving the response may take several seconds.
 
 ## Publications
-* [M. Heinrichs, A. Sezgin, and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi", handed in for ISAP 2023](https://github.com/mheinri/OpenSourceRIS/blob/main/Open%20Source%20Reconfigurable%20Intelligent%20Surface%20for%20the%20Frequency%20Range%20of%205%20GHz%20WiFi.pdf)
-* M. Heinrichs, F. Pirlet, and R. Kronberger, "Measurement System and Methodology for RIS Evaluation", handed in for ISAP 2023
+* M. Heinrichs, A. Sezgin and R. Kronberger, "Open Source Reconfigurable Intelligent Surface for the Frequency Range of 5 GHz WiFi," 2023 IEEE International Symposium On Antennas And Propagation (ISAP), Kuala Lumpur, Malaysia, 2023, pp. 1-2, [doi: 10.1109/ISAP57493.2023.10389095.](https://doi.org/10.1109/ISAP57493.2023.10389095)
+* M. Heinrichs, F. Pirlet and R. Kronberger, "Measurement System and Methodology for RIS-Evaluation," 2023 IEEE International Symposium On Antennas And Propagation (ISAP), Kuala Lumpur, Malaysia, 2023, pp. 1-2, [doi: 10.1109/ISAP57493.2023.10388696.](https://doi.org/10.1109/ISAP57493.2023.10388696)
 
 ## Acknowledgment
 Many thanks to the Institute of Electronic Circuits at Ruhr University Bochum for the extensive help with assembling the printed circuit boards.
