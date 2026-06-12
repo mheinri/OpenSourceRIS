@@ -13,6 +13,20 @@ An open source linearly polarized Reconfigurable Intelligent Surface (RIS) with 
   Fig. 2: Back side of the RIS with controller board attached
 </p>
 
+## Commercially Available Version
+> [!NOTE]
+> Due to the many inquiries we have received: An improved, ready-to-use version
+> of this RIS for teaching, research, and development is commercially available
+> from our startup **[NovoFlect](https://www.novoflect.de/en/)**.
+
+- **Fully assembled, tested, and verified** - no need to deal with component
+  sourcing, PCB procurement, assembly, soldering, or firmware flashing.
+- **Compact variant** with 120 elements available.
+- **Other frequency ranges** available as well, e.g. 3.6 GHz with 3-bit phase
+  resolution or 28 GHz.
+- Interested? Feel free to reach out via the contact form on our website:
+  **[www.novoflect.de/en/contact](https://novoflect.de/en/contact/)**
+
 ## Unit Cell Design
 The RIS unit cell consists of a linearly polarized pin-fed patch antenna, realized on a printed circuit board (PCB). Low-cost FR4 substrate with a specified dielectric constant of ϵr = 4.6 and dissipation factor tan δ = 0.028 is used. Fig. 3 shows the simplified unit cell with its dimensions. The circuit network generates a binary switchable reflection coefficient by using a BGS12P2L6 single pole, double throw (SPDT) RF switch from Infineon Technologies.
 
